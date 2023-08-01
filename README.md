@@ -21,7 +21,7 @@ Please install node.js
   
 ## Usage 
 This app will allow the user to track departments, roles and employees.
-![picture of terminal questions and index.js ](media/noteTracker_ 7_31_2023 7_51_42 AM.png)
+![picture of terminal questions and index.js ](media/noteTracker.png)
 ![picture of Schema.sql, hospital_hr database and tables(department, roles, and employee) ](media/Schema.png)
 ![picture of seeds.sql, list of values entered into sql table ](media/seeds.sql_ 7_31_2023 7_49_35 AM.png)
 ![]()
