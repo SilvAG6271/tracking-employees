@@ -1,5 +1,5 @@
 USE hospital_hr;
-
+--seeds for tables, basically some starting values
 INSERT INTO department(name)
 VALUES 
 ("Supply Chain"),

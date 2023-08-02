@@ -1,5 +1,5 @@
 const mysql = require("mysql2");
-
+//connecting to mysql
 class Database {
     constructor() {
         this.connection = null;
@@ -23,7 +23,7 @@ async connect() {
     }
 }
 
-
+//sql logic used to get the info from the tables
 
     findAllDepartments() {
         return this.connection.promise().query("SELECT * FROM department");

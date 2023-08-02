@@ -1,9 +1,9 @@
-// const mysql = require("mysql2");
+//added required stuff
 const inquirer = require("inquirer");
 const Database = require("./database/dbIndex");
 require("console.table");
 
-
+//created a constructor class to run async functions
 class MainMenu {
     constructor(){
         this.db = new Database();
@@ -51,7 +51,7 @@ class MainMenu {
      ];
     
     }
-    
+  //logic to run the app and wait for answers to prompts  
     async run() {
         await this.db.connect();
         while(true){
@@ -86,13 +86,13 @@ class MainMenu {
            
         }
        
-
+//function to map employees
     mapNewEmployee({id, name, manager}) {
             return {name, value:id, manager};
         
     }   
   
-
+//start of the various functions set in main menu
     async viewDepartments() {
         try {
             const [rows] = await this.db.findAllDepartments();
@@ -343,6 +343,8 @@ this.run();
 };
 
 async deleteEmployee(){
+    //getting info from findAllEmployees and putting them in a row so that
+    //user can make a choice
     const [rowsA] = await this.db.findAllEmployees();
     console.table(rowsA);
     const employees = rowsA.map(({id, name}) => ({
@@ -350,6 +352,7 @@ async deleteEmployee(){
         value: id,
     }));
     console.log(employees);
+    //asking user to make choice based upon list
     const choice = await inquirer.prompt ([
         {
             type:"list",
@@ -358,6 +361,7 @@ async deleteEmployee(){
             choices: employees
         }
     ])
+    //waiting for response and then deleting, showing new row of employees
     .then ((response) => {
         this.db.deleteEmployee(response.employee);
         this.db.findAllEmployees().then(([rows]) => {
