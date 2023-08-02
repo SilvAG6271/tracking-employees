@@ -30,7 +30,7 @@ This app will allow the user to track departments, roles and employees.
 
 
 ## Credits
-I got massive help from Github user njthanhtrang at https://github.com/njthanhtrang.
+Coding logic was from Github user njthanhtrang at https://github.com/njthanhtrang, always much thanks.
 
 
 ## License 
