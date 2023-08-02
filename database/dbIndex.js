@@ -1,9 +1,29 @@
+const mysql = require("mysql2");
 
-
-class dataB {
-    constructor(connection) {
-        this.connection = connection;
+class Database {
+    constructor() {
+        this.connection = null;
     }
+
+
+async connect() {
+    try {
+        if(!this.connection) {
+        this.connection = mysql.createConnection({
+            host: "localhost",
+            user: "root",
+            password: "JavaTac9753!",
+            database: "hospital_hr"
+        });
+        console.log("Connected to the hospital_db database.");
+        }
+    } catch (err) {
+        throw err;
+    
+    }
+}
+
+
 
     findAllDepartments() {
         return this.connection.promise().query("SELECT * FROM department");
@@ -107,6 +127,27 @@ class dataB {
         GROUP BY department.id`);
         
     }
+
+    findTotalEmp(){
+        return this.connection
+        .promise()
+        .query(`SELECT COUNT(*) AS total_employees FROM employee`);
+    }
+
+    findEmployeeCountByManager(){
+        return this.connection
+        .promise()
+        .query(`SELECT employee.manager_id, CONCAT(manager.first_name, '', manager.last_name) AS manager_name, COUNT(*) AS employee_count FROM employee LEFT JOIN employee manager ON employee.manager_id = manager.id
+        GROUP BY employee.manager_id, manager_name`);
+    }
+    findEmployeeCountByDepartment(){
+        return this.connection
+        .promise()
+        .query (`SELECT department.name AS department, department.id, COUNT(employee.id) 
+        AS total_employees FROM employee LEFT JOIN roles on employee.role_id = roles.id LEFT JOIN department on roles.department_id = department.id
+        GROUP BY department.id`);
+        
+    }
 }
 
-module.exports = dataB
+module.exports = Database
