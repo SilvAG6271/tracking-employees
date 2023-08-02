@@ -25,6 +25,7 @@ This app will allow the user to track departments, roles and employees.
 ![picture of Schema.sql, hospital_hr database and tables(department, roles, and employee) ](media/Schema.png)
 ![picture of seeds.sql, list of values entered into sql table ](media/seeds.png)
 ![](media/trackingEmployees.gif)
+![](media/newFeatures.gif)
 
 
 
